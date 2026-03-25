@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #0D0D0D;
+  --warm: #141414;
+  --blush: #FF2D6B;
+  --rose: #FF5C8A;
+  --terracotta: #E0004D;
+  --dark: #F5F5F5;
+  --mid: #AAAAAA;
+  --gold: #FF2D6B;
+  --gold-light: #FF8FAF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--warm); }
+::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 2px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes floatBlob {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-30px) scale(1.05); }
+}
+@keyframes morphBlob {
+  0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+  33%      { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+  66%      { border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #FF2D6B, transparent);
+  margin: 0 5rem;
+}
+
+@media (max-width: 900px) {
+  #hero {
+    grid-template-columns: 1fr !important;
+    padding: 6rem 2rem 3rem !important;
+    text-align: center;
+  }
+  .hero-visual { display: none !important; }
+  #about .about-grid,
+  #contact .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+  #portfolio .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+  nav { padding: 1.2rem 1.5rem !important; }
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: block !important; }
+  section { padding: 4rem 1.5rem !important; }
+  footer { padding: 1.5rem !important; flex-direction: column; gap: 0.5rem; }
+  .divider { margin: 0 1.5rem !important; }
+}
