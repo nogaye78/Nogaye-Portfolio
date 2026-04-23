@@ -6,7 +6,7 @@ const projects = [
     title: "Site stastic HTML CSS",
     tag: "HTML · CSS",
     desc: "Site web statique développé en HTML et CSS, offrant une interface simple, responsive et optimisée pour une navigation fluide sur tous les appareils.",
-    icon: "✦",
+    img: "/image.png",  
     bg: "linear-gradient(135deg, #1a0a10 0%, #2a0d18 100%)",
     link: "https://poetic-naiad-b89246.netlify.app/",
     preview: "/image.png",  
@@ -16,7 +16,7 @@ const projects = [
     title: "App Bancaire",
     tag: "React · Node.js",
     desc: "Application web moderne développée avec React pour le frontend et Node.js pour le backend. Elle permet une interaction dynamique avec les utilisateurs grâce à une API et une gestion efficace des données.",
-    icon: "◆",
+    img: "/img2.png", 
     bg: "linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%)",
     link: "https://tache-21-frontt.vercel.app/",
     preview: "/img2.png",  
@@ -26,7 +26,7 @@ const projects = [
     title: "Admin panel",
     tag: "React Django",
     desc: "Application d’administration (Admin Panel) développée avec React pour le frontend et Django (avec API REST) pour le backend. Elle permet de gérer efficacement les données, les utilisateurs et les fonctionnalités d’une application via une interface sécurisée et intuitive.",
-    icon: "◉",
+    img: "/image copy.png",
     bg: "linear-gradient(135deg, #1a0814 0%, #2a1020 100%)",
     link: "https://tektal-administration.vercel.app/chemins",
     preview: "/image copy.png",
@@ -105,7 +105,7 @@ function ProjectCard({ proj, dark, onPreview }) {
     >
       {/* Thumbnail */}
       <div style={{ width: "100%", height: 220, background: proj.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", fontSize: "3rem", color: "#FF2D6B", transform: hovered ? "scale(1.05)" : "scale(1)", transition: "transform 0.6s ease", position: "relative", overflow: "hidden" }}>
-        {proj.icon}
+      <img src={proj.img} alt={proj.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         {/* Hover overlay */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(255,45,107,0.15)", display: "flex", alignItems: "center", justifyContent: "center", opacity: hovered ? 1 : 0, transition: "opacity 0.3s" }}>
           <div style={{ background: "rgba(0,0,0,0.7)", color: "white", padding: "0.6rem 1.4rem", borderRadius: 100, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, display: "flex", alignItems: "center", gap: "0.5rem" }}>
