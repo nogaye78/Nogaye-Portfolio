@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 export default function Navbar({ dark, setDark }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

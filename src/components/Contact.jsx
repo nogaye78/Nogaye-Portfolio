@@ -1,14 +1,92 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 // ─── CONFIGURATION EMAILJS ────────────────────────────────────────────────────
-// Remplace ces 3 valeurs par les tiennes sur https://www.emailjs.com
-const EMAILJS_SERVICE_ID  = "service_zx6cuae";   // ex: "service_abc123"
-const EMAILJS_TEMPLATE_ID = "template_65d6jun";  // ex: "template_xyz456"  
-const EMAILJS_PUBLIC_KEY  = "O_bfxTNfxiiqx-14C";     // ex: "aBcDeFgHiJkLmNoP"
+const EMAILJS_SERVICE_ID  = "service_zx6cuae";
+const EMAILJS_TEMPLATE_ID = "template_65d6jun";
+const EMAILJS_PUBLIC_KEY  = "O_bfxTNfxiiqx-14C";
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Hook d'animation au scroll (interne, pas besoin d'import externe)
+// ─── Toast Component ──────────────────────────────────────────────────────────
+function Toast({ message, type, visible }) {
+  const isSuccess = type === "success";
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "2rem",
+        right: "2rem",
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.8rem",
+        background: isSuccess ? "#0f2718" : "#2a0a0f",
+        border: `1px solid ${isSuccess ? "#22c55e" : "#FF2D6B"}`,
+        color: isSuccess ? "#22c55e" : "#FF2D6B",
+        padding: "1rem 1.5rem",
+        borderRadius: 14,
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: "0.9rem",
+        fontWeight: 500,
+        boxShadow: `0 8px 32px ${isSuccess ? "rgba(34,197,94,0.2)" : "rgba(255,45,107,0.2)"}`,
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0) scale(1)" : "translateY(-16px) scale(0.97)",
+        transition: "opacity 0.4s ease, transform 0.4s ease",
+        pointerEvents: "none",
+        minWidth: 280,
+      }}
+    >
+      {/* Icône */}
+      <div
+        style={{
+          width: 32,
+          height: 32,
+          borderRadius: "50%",
+          background: isSuccess ? "rgba(34,197,94,0.15)" : "rgba(255,45,107,0.15)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          fontSize: "1rem",
+        }}
+      >
+        {isSuccess ? "✓" : "✕"}
+      </div>
+
+      <div>
+        <p style={{ margin: 0, fontWeight: 600, fontSize: "0.88rem" }}>
+          {isSuccess ? "Message envoyé !" : "Erreur d'envoi"}
+        </p>
+        <p style={{ margin: 0, fontSize: "0.78rem", opacity: 0.75, marginTop: 2 }}>
+          {message}
+        </p>
+      </div>
+
+      {/* Barre de progression */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          height: 3,
+          borderRadius: "0 0 14px 14px",
+          background: isSuccess ? "#22c55e" : "#FF2D6B",
+          animation: visible ? "toastProgress 3s linear forwards" : "none",
+          opacity: 0.6,
+        }}
+      />
+
+      <style>{`
+        @keyframes toastProgress {
+          from { width: 100%; }
+          to   { width: 0%; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// ─── useReveal hook ───────────────────────────────────────────────────────────
 function useReveal() {
   const [visible, setVisible] = useState(false);
   const ref = (node) => {
@@ -22,18 +100,30 @@ function useReveal() {
   return { ref, visible };
 }
 
+// ─── Main Component ───────────────────────────────────────────────────────────
 export default function Contact({ dark = false }) {
   const { ref: ref1, visible: v1 } = useReveal();
   const { ref: ref2, visible: v2 } = useReveal();
 
-  const [form, setForm]         = useState({ name: "", email: "", message: "" });
+  const [form, setForm]           = useState({ name: "", email: "", message: "" });
   const [btnHovered, setBtnHovered] = useState(false);
-  const [status, setStatus]     = useState("idle"); // idle | sending | sent | error
+  const [status, setStatus]       = useState("idle"); // idle | sending | sent | error
 
-  const bg         = dark ? "#141414" : "#F5F5F5";
-  const text       = dark ? "#F5F5F5" : "#111111";
-  const sub        = dark ? "rgba(245,245,245,0.5)" : "#888888";
-  const inputBg    = dark ? "rgba(255,255,255,0.03)" : "#ffffff";
+  // Toast state
+  const [toast, setToast]         = useState(null);  // { message, type }
+  const [toastVisible, setToastVisible] = useState(false);
+
+  const showToast = (message, type) => {
+    setToast({ message, type });
+    setToastVisible(true);
+    setTimeout(() => setToastVisible(false), 3000);
+    setTimeout(() => setToast(null), 3400);
+  };
+
+  const bg          = dark ? "#141414" : "#F5F5F5";
+  const text        = dark ? "#F5F5F5" : "#111111";
+  const sub         = dark ? "rgba(245,245,245,0.5)" : "#888888";
+  const inputBg     = dark ? "rgba(255,255,255,0.03)" : "#ffffff";
   const inputBorder = dark ? "#222" : "#ddd";
 
   const inputStyle = {
@@ -55,9 +145,8 @@ export default function Contact({ dark = false }) {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async () => {
-    // Validation simple
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      alert("Merci de remplir tous les champs.");
+      showToast("Merci de remplir tous les champs.", "error");
       return;
     }
 
@@ -77,9 +166,14 @@ export default function Contact({ dark = false }) {
       );
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
+      showToast("Ton message a bien été reçu, je te réponds bientôt !", "success");
+      // Réinitialise le bouton après 4s
+      setTimeout(() => setStatus("idle"), 4000);
     } catch (err) {
       console.error("EmailJS error:", err);
       setStatus("error");
+      showToast("Une erreur est survenue. Réessaie dans quelques instants.", "error");
+      setTimeout(() => setStatus("idle"), 4000);
     }
   };
 
@@ -104,6 +198,15 @@ export default function Contact({ dark = false }) {
         overflow: "hidden",
       }}
     >
+      {/* Toast */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          visible={toastVisible}
+        />
+      )}
+
       {/* Watermark décoratif */}
       <div
         style={{
@@ -330,38 +433,6 @@ export default function Contact({ dark = false }) {
               </svg>
             )}
           </button>
-
-          {/* Message d'erreur */}
-          {status === "error" && (
-            <p
-              style={{
-                color: "#FF2D6B",
-                fontSize: "0.85rem",
-                margin: 0,
-                display: "flex",
-                alignItems: "center",
-                gap: "0.4rem",
-              }}
-            >
-              ⚠ Une erreur est survenue. Réessaie dans quelques instants.
-            </p>
-          )}
-
-          {/* Message de succès */}
-          {status === "sent" && (
-            <p
-              style={{
-                color: "#22c55e",
-                fontSize: "0.85rem",
-                margin: 0,
-                display: "flex",
-                alignItems: "center",
-                gap: "0.4rem",
-              }}
-            >
-              ✓ Ton message a bien été envoyé !
-            </p>
-          )}
         </div>
       </div>
 
