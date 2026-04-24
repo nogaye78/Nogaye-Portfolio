@@ -134,7 +134,7 @@ export default function Hero({ dark }) {
 
           {/* Télécharger CV */}
           <a
-            href="/cv-nogaye-ndao.pdf"
+            href="/file:///C:/Users/hp/Desktop/Mon%20CV/CV%20-%20Junior%20Web%20Developer.pdf"
             download
             style={{
               display: "inline-flex",
