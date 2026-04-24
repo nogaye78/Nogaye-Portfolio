@@ -207,7 +207,7 @@ export default function Contact({ dark = false }) {
     },
     {
       icon: <Phone size={16} color="#FF2D6B" />,
-      label: "77 103 38 51",
+      label: "+221 77 103 38 51",
     },
     
     {
