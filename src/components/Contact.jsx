@@ -1,5 +1,6 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Phone } from "lucide-react";
 
 // ─── CONFIGURATION EMAILJS ────────────────────────────────────────────────────
 const EMAILJS_SERVICE_ID  = "service_zx6cuae";
@@ -205,7 +206,7 @@ export default function Contact({ dark = false }) {
       href: "mailto:nogayedev02@email.com",
     },
     {
-       icon: <PhoneInIcon size={16} color="#FF2D6B" />,
+      icon: <Phone size={16} color="#FF2D6B" />,
       label: "77 103 38 51",
     },
     
