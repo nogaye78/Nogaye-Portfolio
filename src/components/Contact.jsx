@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
 // ─── CONFIGURATION EMAILJS ────────────────────────────────────────────────────
@@ -6,6 +6,19 @@ const EMAILJS_SERVICE_ID  = "service_zx6cuae";
 const EMAILJS_TEMPLATE_ID = "template_65d6jun";
 const EMAILJS_PUBLIC_KEY  = "O_bfxTNfxiiqx-14C";
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─── LinkedIn SVG Icon ────────────────────────────────────────────────────────
+const LinkedInIcon = ({ size = 16, color = "currentColor" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.337 3.305C6.477 3.305 7.401 4.23 7.401 5.368C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z"/>
+  </svg>
+);
 
 // ─── Toast Component ──────────────────────────────────────────────────────────
 function Toast({ message, type, visible }) {
@@ -36,7 +49,6 @@ function Toast({ message, type, visible }) {
         minWidth: 280,
       }}
     >
-      {/* Icône */}
       <div
         style={{
           width: 32,
@@ -52,7 +64,6 @@ function Toast({ message, type, visible }) {
       >
         {isSuccess ? "✓" : "✕"}
       </div>
-
       <div>
         <p style={{ margin: 0, fontWeight: 600, fontSize: "0.88rem" }}>
           {isSuccess ? "Message envoyé !" : "Erreur d'envoi"}
@@ -61,8 +72,6 @@ function Toast({ message, type, visible }) {
           {message}
         </p>
       </div>
-
-      {/* Barre de progression */}
       <div
         style={{
           position: "absolute",
@@ -75,7 +84,6 @@ function Toast({ message, type, visible }) {
           opacity: 0.6,
         }}
       />
-
       <style>{`
         @keyframes toastProgress {
           from { width: 100%; }
@@ -105,12 +113,10 @@ export default function Contact({ dark = false }) {
   const { ref: ref1, visible: v1 } = useReveal();
   const { ref: ref2, visible: v2 } = useReveal();
 
-  const [form, setForm]           = useState({ name: "", email: "", message: "" });
+  const [form, setForm]             = useState({ name: "", email: "", message: "" });
   const [btnHovered, setBtnHovered] = useState(false);
-  const [status, setStatus]       = useState("idle"); // idle | sending | sent | error
-
-  // Toast state
-  const [toast, setToast]         = useState(null);  // { message, type }
+  const [status, setStatus]         = useState("idle");
+  const [toast, setToast]           = useState(null);
   const [toastVisible, setToastVisible] = useState(false);
 
   const showToast = (message, type) => {
@@ -125,6 +131,7 @@ export default function Contact({ dark = false }) {
   const sub         = dark ? "rgba(245,245,245,0.5)" : "#888888";
   const inputBg     = dark ? "rgba(255,255,255,0.03)" : "#ffffff";
   const inputBorder = dark ? "#222" : "#ddd";
+  const iconBorder  = dark ? "#333" : "#ddd";
 
   const inputStyle = {
     width: "100%",
@@ -149,9 +156,7 @@ export default function Contact({ dark = false }) {
       showToast("Merci de remplir tous les champs.", "error");
       return;
     }
-
     setStatus("sending");
-
     try {
       await emailjs.send(
         EMAILJS_SERVICE_ID,
@@ -167,7 +172,6 @@ export default function Contact({ dark = false }) {
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
       showToast("Ton message a bien été reçu, je te réponds bientôt !", "success");
-      // Réinitialise le bouton après 4s
       setTimeout(() => setStatus("idle"), 4000);
     } catch (err) {
       console.error("EmailJS error:", err);
@@ -183,9 +187,35 @@ export default function Contact({ dark = false }) {
     : "Envoyer le message";
 
   const btnBg =
-    status === "sent"    ? "#22c55e"
-    : btnHovered         ? "#FF5C8A"
+    status === "sent"  ? "#22c55e"
+    : btnHovered       ? "#FF5C8A"
     : "#FF2D6B";
+
+  // ─── Infos de contact ───────────────────────────────────────────────────────
+  const contactItems = [
+    {
+      icon: "✉",
+      label: "nogayedev02@email.com",
+      href: "mailto:nogayedev02@email.com",
+    },
+    {
+      icon: "◉",
+      label: "Dakar, Sénégal",
+      href: null,
+    },
+    {
+      icon: "↗",
+      label: "github.com/nogaye78",
+      href: "https://github.com/nogaye78",
+    },
+    {
+      // LinkedIn SVG icon
+      icon: <LinkedInIcon size={16} color="#FF2D6B" />,
+      label: "linkedin.com/in/nogaye",           // ← remplace par ton vrai profil
+      href: "https://www.linkedin.com/in/nogaye", // ← remplace par ton vrai lien
+      isLinkedIn: true,
+    },
+  ];
 
   return (
     <section
@@ -200,11 +230,7 @@ export default function Contact({ dark = false }) {
     >
       {/* Toast */}
       {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          visible={toastVisible}
-        />
+        <Toast message={toast.message} type={toast.type} visible={toastVisible} />
       )}
 
       {/* Watermark décoratif */}
@@ -295,38 +321,63 @@ export default function Contact({ dark = false }) {
             vision digitale.
           </p>
 
-          {[
-            { icon: "✉", label: "nogayedev02@email.com" },
-            { icon: "◉", label: "Dakar, Sénégal" },
-            { icon: "↗", label: "github.com/nogaye78" },
-          ].map(({ icon, label }) => (
-            <div
-              key={label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "1rem",
-                marginBottom: "1.2rem",
-              }}
-            >
+          {/* Liste des contacts */}
+          {contactItems.map(({ icon, label, href, isLinkedIn }) => {
+            const inner = (
               <div
                 style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  border: `1px solid ${dark ? "#333" : "#ddd"}`,
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  color: "#FF2D6B",
-                  flexShrink: 0,
+                  gap: "1rem",
+                  marginBottom: "1.2rem",
+                  cursor: href ? "pointer" : "default",
+                  textDecoration: "none",
                 }}
               >
-                {icon}
+                <div
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    border: `1px solid ${isLinkedIn ? "#0A66C2" : iconBorder}`,
+                    background: isLinkedIn ? "rgba(10,102,194,0.08)" : "transparent",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#FF2D6B",
+                    flexShrink: 0,
+                    transition: "background 0.3s, border-color 0.3s",
+                  }}
+                >
+                  {typeof icon === "string" ? icon : icon}
+                </div>
+                <span
+                  style={{
+                    fontSize: "0.9rem",
+                    color: isLinkedIn ? "#0A66C2" : sub,
+                    fontWeight: isLinkedIn ? 500 : 300,
+                    transition: "color 0.3s",
+                  }}
+                >
+                  {label}
+                </span>
               </div>
-              <span style={{ fontSize: "0.9rem", color: sub }}>{label}</span>
-            </div>
-          ))}
+            );
+
+            return href ? (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", display: "block" }}
+              >
+                {inner}
+              </a>
+            ) : (
+              <div key={label}>{inner}</div>
+            );
+          })}
         </div>
 
         {/* ── Colonne droite : formulaire ── */}
