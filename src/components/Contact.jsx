@@ -210,7 +210,7 @@ export default function Contact({ dark = false }) {
     },
     {
       // LinkedIn SVG icon
-      icon: <LinkedInIcon size={16} color="#FF2D6B" />,
+      icon: <LinkedInIcon size={16} color="#FF2D6B" background-color="none" />,
       label: "Nogaye Ndao",           // ← remplace par ton vrai profil
      /// ← remplace par ton vrai lien
       isLinkedIn: true,
