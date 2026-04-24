@@ -211,8 +211,8 @@ export default function Contact({ dark = false }) {
     {
       // LinkedIn SVG icon
       icon: <LinkedInIcon size={16} color="#FF2D6B" />,
-      label: "linkedin.com/in/nogaye",           // ← remplace par ton vrai profil
-      href: "https://www.linkedin.com/in/nogaye", // ← remplace par ton vrai lien
+      label: "Nogaye Ndao",           // ← remplace par ton vrai profil
+     /// ← remplace par ton vrai lien
       isLinkedIn: true,
     },
   ];
