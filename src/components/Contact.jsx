@@ -209,12 +209,17 @@ export default function Contact({ dark = false }) {
       href: "https://github.com/nogaye78",
     },
     {
-      // LinkedIn SVG icon
-      icon: <LinkedInIcon size={16} color="#FF2D6B" background-color="none" />,
-      label: "Nogaye Ndao",           // ← remplace par ton vrai profil
-     /// ← remplace par ton vrai lien
-      isLinkedIn: true,
+       icon: <LinkedInIcon size={16} color="#FF2D6B" />,
+      label: "Nogaye Ndao",
+      href: "https://github.com/nogaye78",
     },
+    // {
+    //   // LinkedIn SVG icon
+    //   icon: <LinkedInIcon size={16} color="#FF2D6B" />,
+    //   label: "Nogaye Ndao",           // ← remplace par ton vrai profil
+    //  /// ← remplace par ton vrai lien
+    //   isLinkedIn: true,
+    // },
   ];
 
   return (
