@@ -193,16 +193,22 @@ export default function Contact({ dark = false }) {
 
   // ─── Infos de contact ───────────────────────────────────────────────────────
   const contactItems = [
+
+    {
+      icon: "◉",
+      label: "Dakar, Sénégal",
+      href: null,
+    },
     {
       icon: "✉",
       label: "nogayedev02@email.com",
       href: "mailto:nogayedev02@email.com",
     },
     {
-      icon: "◉",
-      label: "Dakar, Sénégal",
-      href: null,
+       icon: <PhoneInIcon size={16} color="#FF2D6B" />,
+      label: "77 103 38 51",
     },
+    
     {
       icon: "↗",
       label: "github.com/nogaye78",
