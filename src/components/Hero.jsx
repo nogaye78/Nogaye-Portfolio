@@ -1,245 +1,90 @@
 export default function Hero({ dark }) {
-  const text = dark ? "#F5F5F5" : "#111111";
-  const sub = dark ? "#AAAAAA" : "#666666";
-  const badgeBg = dark ? "#141414" : "#ffffff";
-  const badgeBorder = dark ? "#222" : "#e5e5e5";
-  const blobBg = dark ? "rgba(255,45,107,0.15)" : "rgba(255,45,107,0.08)";
+  const text = dark ? "#F9F9F9" : "#111111";
+  const sub = dark ? "#777" : "#888";
+  const sectionBg = dark ? "#111111" : "#F9F9F9";
+  const badgeBg = dark ? "#1A1A1A" : "#FFFFFF";
+  const badgeBorder = dark ? "#2a2a2a" : "#E8E8E8";
 
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: "100vh",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        alignItems: "center",
-        padding: "0 5rem",
-        paddingTop: "5rem",
-        gap: "4rem",
-        position: "relative",
-        overflow: "hidden",
-        background: dark
-          ? "radial-gradient(ellipse 60% 70% at 80% 30%, rgba(255,45,107,0.12) 0%, transparent 70%), #0D0D0D"
-          : "radial-gradient(ellipse 60% 70% at 80% 30%, rgba(255,45,107,0.07) 0%, transparent 70%), #FAFAFA",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          width: 300,
-          height: 300,
-          background: "#FF2D6B",
-          borderRadius: "50%",
-          filter: "blur(80px)",
-          opacity: dark ? 0.15 : 0.07,
-          top: "10%",
-          right: "5%",
-          animation: "floatBlob 8s ease-in-out infinite",
-        }}
-      />
+    <section id="hero" style={{
+      minHeight: "100vh",
+      display: "grid", gridTemplateColumns: "1fr 1fr",
+      alignItems: "center",
+      padding: "0 5rem", paddingTop: "5rem",
+      gap: "4rem", position: "relative", overflow: "hidden",
+      background: sectionBg,
+    }}>
+      {/* Blobs décoratifs subtils */}
+      <div style={{ position: "absolute", width: 500, height: 500, background: "radial-gradient(circle, rgba(232,93,74,0.07) 0%, transparent 70%)", borderRadius: "50%", top: "-10%", right: "-5%", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", width: 300, height: 300, background: "radial-gradient(circle, rgba(232,93,74,0.04) 0%, transparent 70%)", borderRadius: "50%", bottom: "10%", left: "5%", pointerEvents: "none" }} />
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <div
-          style={{
-            fontSize: "0.75rem",
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            color: "#FF2D6B",
-            fontWeight: 500,
-            marginBottom: "1.5rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.8rem",
-          }}
-        >
-          <span
-            style={{ display: "inline-block", width: 40, height: 1, background: "#FF2D6B" }}
-          />
-          Développeuse Web & Mobile
+        <div style={{ fontSize: "0.72rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#E85D4A", fontWeight: 500, marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.8rem" }}>
+          <span style={{ display: "inline-block", width: 30, height: 1, background: "#E85D4A" }} />
+          Développeuse Web
         </div>
 
-        <h1
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(3.5rem, 6vw, 5.5rem)",
-            fontWeight: 900,
-            lineHeight: 1.05,
-            color: text,
-            marginBottom: "1.5rem",
-            animation: "fadeUp 0.9s ease 0.2s both",
-          }}
-        >
-          Salut, je suis
-          <br />
-          <em style={{ fontStyle: "italic", color: "#FF2D6B" }}>Nogaye</em>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 5vw, 5rem)", fontWeight: 900, lineHeight: 1.05, color: text, marginBottom: "1.5rem", animation: "fadeUp 0.9s ease 0.2s both" }}>
+          Bonjour, je suis<br />
+          <em style={{ fontStyle: "italic", color: "#E85D4A" }}>Nogaye</em>
         </h1>
 
-        <p
-          style={{
-            fontSize: "1.05rem",
-            color: sub,
-            lineHeight: 1.8,
-            maxWidth: 480,
-            marginBottom: "2.5rem",
-            fontWeight: 300,
-            animation: "fadeUp 0.9s ease 0.4s both",
-          }}
-        >
-          Je transforme vos idées en expériences digitales élégantes — avec React, Tailwind CSS,
-          et beaucoup de passion.
+        <p style={{ fontSize: "1rem", color: sub, lineHeight: 1.9, maxWidth: 460, marginBottom: "2.5rem", fontWeight: 300, animation: "fadeUp 0.9s ease 0.4s both" }}>
+          Je transforme vos idées en expériences digitales soignées — avec React, Node.js et une attention particulière aux détails.
         </p>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "1rem",
-            flexWrap: "wrap",
-            animation: "fadeUp 0.9s ease 0.6s both",
+        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", animation: "fadeUp 0.9s ease 0.6s both" }}>
+          <a href="#portfolio" style={{
+            display: "inline-flex", alignItems: "center", gap: "0.6rem",
+            background: "#E85D4A", color: "white",
+            padding: "0.9rem 2rem", borderRadius: 8,
+            fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase",
+            fontWeight: 500, textDecoration: "none", transition: "all 0.3s",
+            boxShadow: "0 4px 20px rgba(232,93,74,0.3)",
           }}
-        >
-          {/* CTA projets */}
-          <a
-            href="#portfolio"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.8rem",
-              background: "#FF2D6B",
-              color: "white",
-              padding: "1rem 2rem",
-              borderRadius: 100,
-              fontSize: "0.85rem",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              fontWeight: 500,
-              textDecoration: "none",
-              boxShadow: "0 8px 30px rgba(255,45,107,0.35)",
-              transition: "all 0.3s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#FF5C8A";
-              e.currentTarget.style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#FF2D6B";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#D4432F"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 30px rgba(232,93,74,0.4)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#E85D4A"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(232,93,74,0.3)"; }}
           >
             Voir mes projets
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12,5 19,12 12,19" />
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/>
             </svg>
           </a>
 
-          {/* Télécharger CV */}
-          <a
-            href="/file:///C:/Users/hp/Desktop/Mon%20CV/CV%20-%20Junior%20Web%20Developer.pdf"
-            download
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.8rem",
-              background: "transparent",
-              color: "#FF2D6B",
-              padding: "1rem 2rem",
-              borderRadius: 100,
-              fontSize: "0.85rem",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              fontWeight: 500,
-              textDecoration: "none",
-              border: "1.5px solid #FF2D6B",
-              transition: "all 0.3s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#FF2D6B";
-              e.currentTarget.style.color = "white";
-              e.currentTarget.style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = "#FF2D6B";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
+          <a href="/cv-nogaye-ndao.pdf" download style={{
+            display: "inline-flex", alignItems: "center", gap: "0.6rem",
+            background: "transparent", color: dark ? "#ccc" : "#333",
+            padding: "0.9rem 2rem", borderRadius: 8,
+            fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase",
+            fontWeight: 500, textDecoration: "none",
+            border: "1px solid " + (dark ? "#2a2a2a" : "#D8D8D8"),
+            transition: "all 0.3s",
+          }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "#E85D4A"; e.currentTarget.style.color = "#E85D4A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = dark ? "#2a2a2a" : "#D8D8D8"; e.currentTarget.style.color = dark ? "#ccc" : "#333"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             Télécharger CV
           </a>
         </div>
       </div>
 
-      <div
-        className="hero-visual"
-        style={{
-          position: "relative",
-          zIndex: 1,
-          display: "flex",
-          justifyContent: "center",
-          animation: "fadeLeft 0.9s ease 0.3s both",
-        }}
-      >
+      <div className="hero-visual" style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "center", animation: "fadeLeft 0.9s ease 0.3s both" }}>
         <div style={{ position: "relative" }}>
-          <div
-            style={{
-              position: "absolute",
-              width: 320,
-              height: 400,
-              background: blobBg,
-              borderRadius: "60% 40% 70% 30% / 50% 60% 40% 50%",
-              top: -20,
-              right: -20,
-              zIndex: -1,
-              animation: "morphBlob 10s ease-in-out infinite",
-            }}
+          <div style={{ position: "absolute", inset: -16, background: dark ? "#1A1A1A" : "#EFEFEF", borderRadius: "40% 60% 40% 60% / 50% 40% 60% 50%", zIndex: -1, animation: "morphBlob 10s ease-in-out infinite" }} />
+          <img
+            src="/WhatsApp Image 2026-03-23 at 11.36.12.jpeg"
+            alt="Nogaye"
+            style={{ width: 300, height: 380, objectFit: "cover", borderRadius: "40% 60% 40% 60% / 50% 40% 60% 50%", display: "block", transition: "border-radius 0.6s ease", boxShadow: dark ? "0 30px 60px rgba(0,0,0,0.5)" : "0 30px 60px rgba(0,0,0,0.1)" }}
+            onMouseEnter={e => e.currentTarget.style.borderRadius = "50%"}
+            onMouseLeave={e => e.currentTarget.style.borderRadius = "40% 60% 40% 60% / 50% 40% 60% 50%"}
           />
-  <img
-  src="/WhatsApp Image 2026-03-23 at 11.36.12.jpeg"
-  alt="Nogaye"
-  style={{
-    width: "100%",
-    aspectRatio: "3/4",
-    objectFit: "cover",
-    borderRadius: "40% 60% 40% 60% / 50% 40% 60% 50%",
-    boxShadow: "0 30px 60px rgba(0,0,0,0.3)",
-    transition: "border-radius 0.6s ease",
-    display: "block"
-  }}
-  onMouseEnter={e => e.currentTarget.style.borderRadius = "50%"}
-  onMouseLeave={e => e.currentTarget.style.borderRadius = "40% 60% 40% 60% / 50% 40% 60% 50%"}
-/>
-          <div
-            style={{
-              position: "absolute",
-              bottom: 20,
-              left: -20,
-              background: badgeBg,
-              padding: "1rem 1.4rem",
-              borderRadius: 16,
-              boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
-              border: `1px solid ${badgeBorder}`,
-              fontSize: "0.8rem",
-              fontWeight: 500,
-              color: sub,
-              display: "flex",
-              alignItems: "center",
-              gap: "0.6rem",
-            }}
-          >
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                background: "#4CAF50",
-                borderRadius: "50%",
-                animation: "pulse 2s infinite",
-                display: "inline-block",
-              }}
-            />
+          <div style={{ position: "absolute", bottom: 16, left: -24, background: badgeBg, padding: "0.8rem 1.2rem", borderRadius: 12, boxShadow: dark ? "0 8px 30px rgba(0,0,0,0.4)" : "0 8px 30px rgba(0,0,0,0.08)", border: "1px solid " + badgeBorder, fontSize: "0.78rem", fontWeight: 500, color: dark ? "#888" : "#666", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span style={{ width: 7, height: 7, background: "#22c55e", borderRadius: "50%", animation: "pulse 2s infinite", display: "inline-block" }} />
             Disponible pour des projets
           </div>
         </div>
@@ -247,3 +92,84 @@ export default function Hero({ dark }) {
     </section>
   );
 }
+
+
+
+
+
+// export default function Hero({ dark }) {
+//   const text = dark ? "#F0F0F0" : "#111111";
+//   const sub = dark ? "#666" : "#888";
+//   const sectionBg = dark ? "#0F0F0F" : "#F0F0F0";
+//   const badgeBg = dark ? "#1A1A1A" : "#FFFFFF";
+//   const badgeBorder = dark ? "#2a2a2a" : "#D8D8D8";
+
+//   return (
+//     <section id="hero" style={{
+//       minHeight: "100vh",
+//       display: "grid", gridTemplateColumns: "1fr 1fr",
+//       alignItems: "center",
+//       padding: "0 5rem", paddingTop: "5rem",
+//       gap: "4rem", position: "relative", overflow: "hidden",
+//       background: sectionBg,
+//     }}>
+//       <div style={{ position: "absolute", width: 600, height: 600, background: "radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%)", borderRadius: "50%", top: "-15%", right: "-10%", pointerEvents: "none" }} />
+//       <div style={{ position: "absolute", width: 350, height: 350, background: "radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 70%)", borderRadius: "50%", bottom: "5%", left: "0%", pointerEvents: "none" }} />
+
+//       <div style={{ position: "relative", zIndex: 1 }}>
+//         <div style={{ fontSize: "0.72rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#A78BFA", fontWeight: 500, marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.8rem" }}>
+//           <span style={{ display: "inline-block", width: 30, height: 1, background: "#A78BFA" }} />
+//           Développeuse Web & Mobile
+//         </div>
+
+//         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 5vw, 5rem)", fontWeight: 900, lineHeight: 1.05, color: text, marginBottom: "1.5rem", animation: "fadeUp 0.9s ease 0.2s both" }}>
+//           Bonjour, je suis<br />
+//           <em style={{ fontStyle: "italic", color: "#A78BFA" }}>Nogaye</em>
+//         </h1>
+
+//         <p style={{ fontSize: "1rem", color: sub, lineHeight: 1.9, maxWidth: 460, marginBottom: "2.5rem", fontWeight: 300, animation: "fadeUp 0.9s ease 0.4s both" }}>
+//           Je transforme vos idées en expériences digitales soignées — avec React, Node.js et une attention particulière aux détails.
+//         </p>
+
+//         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", animation: "fadeUp 0.9s ease 0.6s both" }}>
+//           <a href="#portfolio" style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "#A78BFA", color: "#0F0F0F", padding: "0.9rem 2rem", borderRadius: 8, fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 600, textDecoration: "none", transition: "all 0.3s", boxShadow: "0 4px 24px rgba(167,139,250,0.35)" }}
+//             onMouseEnter={e => { e.currentTarget.style.background = "#9172F8"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(167,139,250,0.45)"; }}
+//             onMouseLeave={e => { e.currentTarget.style.background = "#A78BFA"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 24px rgba(167,139,250,0.35)"; }}>
+//             Voir mes projets
+//             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+//               <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/>
+//             </svg>
+//           </a>
+
+//           <a href="/cv-nogaye-ndao.pdf" download style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", color: dark ? "#A78BFA" : "#7C6BE0", padding: "0.9rem 2rem", borderRadius: 8, fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 500, textDecoration: "none", border: "1px solid " + (dark ? "#3a2f5c" : "#C4B8F8"), transition: "all 0.3s" }}
+//             onMouseEnter={e => { e.currentTarget.style.background = "rgba(167,139,250,0.1)"; e.currentTarget.style.borderColor = "#A78BFA"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+//             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = dark ? "#3a2f5c" : "#C4B8F8"; e.currentTarget.style.transform = "translateY(0)"; }}>
+//             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+//               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+//               <polyline points="7 10 12 15 17 10"/>
+//               <line x1="12" y1="15" x2="12" y2="3"/>
+//             </svg>
+//             Télécharger CV
+//           </a>
+//         </div>
+//       </div>
+
+//       <div className="hero-visual" style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "center", animation: "fadeLeft 0.9s ease 0.3s both" }}>
+//         <div style={{ position: "relative" }}>
+//           <div style={{ position: "absolute", inset: -16, background: dark ? "#1A1A1A" : "#E4E0FA", borderRadius: "40% 60% 40% 60% / 50% 40% 60% 50%", zIndex: -1, animation: "morphBlob 10s ease-in-out infinite" }} />
+//           <img
+//             src="/WhatsApp Image 2026-03-23 at 11.36.12.jpeg"
+//             alt="Nogaye"
+//             style={{ width: 300, height: 380, objectFit: "cover", borderRadius: "40% 60% 40% 60% / 50% 40% 60% 50%", display: "block", transition: "border-radius 0.6s ease", boxShadow: dark ? "0 30px 70px rgba(0,0,0,0.6)" : "0 30px 70px rgba(167,139,250,0.2)" }}
+//             onMouseEnter={e => e.currentTarget.style.borderRadius = "50%"}
+//             onMouseLeave={e => e.currentTarget.style.borderRadius = "40% 60% 40% 60% / 50% 40% 60% 50%"}
+//           />
+//           <div style={{ position: "absolute", bottom: 16, left: -24, background: badgeBg, padding: "0.8rem 1.2rem", borderRadius: 12, boxShadow: dark ? "0 8px 30px rgba(0,0,0,0.5)" : "0 8px 30px rgba(167,139,250,0.15)", border: "1px solid " + badgeBorder, fontSize: "0.78rem", fontWeight: 500, color: dark ? "#666" : "#888", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+//             <span style={{ width: 7, height: 7, background: "#22c55e", borderRadius: "50%", animation: "pulse 2s infinite", display: "inline-block" }} />
+//             Disponible pour des projets
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
