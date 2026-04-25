@@ -22,20 +22,3 @@ export default function Footer({ dark }) {
 
 
 
-// export default function Footer({ dark }) {
-//   return (
-//     <footer style={{
-//       background: dark ? "#0A0A0A" : "#E0E0EC",
-//       color: dark ? "#333" : "#AAA",
-//       padding: "2rem 5rem",
-//       display: "flex", justifyContent: "space-between", alignItems: "center",
-//       fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem",
-//       borderTop: "1px solid " + (dark ? "#1A1A1A" : "#D0CCF0"),
-//     }}>
-//       <span>© 2026 <strong style={{ color: dark ? "#F0F0F0" : "#111" }}>Nogaye Ndao</strong></span>
-//       <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-//         Fait avec <span style={{ color: "#A78BFA" }}>♥</span> au Sénégal
-//       </span>
-//     </footer>
-//   );
-// }
