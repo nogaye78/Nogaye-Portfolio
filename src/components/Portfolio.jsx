@@ -5,7 +5,7 @@ const projects = [
   {
     title: "Site statique HTML CSS",
     tag: "HTML · CSS",
-    desc: "Site web statique développé en HTML et CSS, avec une interface simple et responsive.",
+    desc: "Site e-commerce responsive conçu en HTML et CSS, avec une interface moderne, navigation fluide et présentation optimisée des produits.",
     img: "/image.png",
     link: "https://poetic-naiad-b89246.netlify.app/",
     preview: "/image.png",
@@ -14,7 +14,7 @@ const projects = [
   {
     title: "App Bancaire",
     tag: "React · Node.js",
-    desc: "Application web développée avec React pour le frontend et Node.js pour le backend.",
+    desc: "Application bancaire moderne avec interface intuitive permettant la consultation des comptes, transactions et gestion simplifiée des opérations.",
     img: "/img2.png",
     link: "https://tache-21-frontt.vercel.app/",
     preview: "/img2.png",
@@ -23,7 +23,7 @@ const projects = [
   {
     title: "Admin Panel",
     tag: "React · Django",
-    desc: "Application d'administration développée avec React et Django REST Framework.",
+    desc: "Développement d’un tableau de bord administrateur pour gérer utilisateurs, contenus et statistiques avec une interface claire et organisée.",
     img: "/image copy 2.png",
     link: "https://tektal-administration.vercel.app/chemins",
     preview: "/image copy.png",
