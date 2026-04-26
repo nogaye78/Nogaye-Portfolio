@@ -51,7 +51,7 @@ export default function Hero({ dark }) {
             </svg>
           </a>
 
-          <a href="/cv-nogaye-ndao.pdf" download style={{
+          <a href="/cv-nogaye.pdf" download style={{
             display: "inline-flex", alignItems: "center", gap: "0.6rem",
             background: "transparent", color: dark ? "#ccc" : "#333",
             padding: "0.9rem 2rem", borderRadius: 8,

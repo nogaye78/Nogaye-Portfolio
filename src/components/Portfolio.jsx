@@ -24,7 +24,7 @@ const projects = [
     title: "Admin Panel",
     tag: "React · Django",
     desc: "Application d'administration développée avec React et Django REST Framework.",
-    img: "/image copy.png",
+    img: "/image copy 2.png",
     link: "https://tektal-administration.vercel.app/chemins",
     preview: "/image copy.png",
     tech: ["React", "Django", "PostgreSQL"],
