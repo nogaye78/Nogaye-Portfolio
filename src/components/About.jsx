@@ -38,7 +38,7 @@ const competences = [
   {
     categorie: "Outils",
     Icon: IconOutils,
-    skills: ["Git", "GitHub",  "Google Analytics"],
+    skills: ["Git", "GitHub", "Figma", "Google Analytics", "Agile / Scrum"],
   },
   {
     categorie: "Marketing",
@@ -69,6 +69,13 @@ export default function About({ dark }) {
 
   return (
     <section id="about" style={{ padding: "7rem 5rem", background: bgSection }}>
+      <style>{`
+        @media (max-width: 768px) {
+          #about { padding: 4rem 1.5rem !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          .about-skills-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto", opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
 
         {/* Titre */}
@@ -84,7 +91,7 @@ export default function About({ dark }) {
         </div>
 
         {/* Photo + Bio */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "5rem", alignItems: "center", marginBottom: "4rem" }}>
+        <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "5rem", alignItems: "center", marginBottom: "4rem" }}>
 
           {/* Photo */}
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -124,7 +131,7 @@ export default function About({ dark }) {
         {/* Compétences */}
         <div>
           <Label>Compétences</Label>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}>
+          <div className="about-skills-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}>
             {competences.map(({ categorie, Icon, skills }) => (
               <div key={categorie} style={{ background: cardBg, border: "1px solid " + border, borderRadius: 16, padding: "1.4rem", transition: "border-color 0.3s, transform 0.3s" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "#E85D4A"; e.currentTarget.style.transform = "translateY(-3px)"; }}
