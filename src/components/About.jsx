@@ -112,7 +112,7 @@ export default function About({ dark }) {
               </div>
 
               <div style={{ position: "absolute", top: 20, right: -20, zIndex: 2, background: "#E85D4A", padding: "0.5rem 1rem", borderRadius: 8, fontSize: "0.7rem", fontWeight: 600, color: "white", boxShadow: "0 4px 16px rgba(232,93,74,0.4)", whiteSpace: "nowrap" }}>
-                Developpeuse web
+                Developpement-web - Marketing digital
               </div>
             </div>
           </div>
