@@ -42,6 +42,25 @@ export default function Navbar({ dark, setDark }) {
     </svg>
   );
 
+  const Logo = () => (
+    <a href="#hero" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="38" height="38">
+        <rect width="160" height="160" rx="28" fill={dark ? "#1A1A1A" : "#111111"}/>
+        <rect x="120" y="0" width="40" height="7" rx="3.5" fill="#E85D4A"/>
+        <rect x="153" y="0" width="7" height="40" rx="3.5" fill="#E85D4A"/>
+        <rect x="0" y="153" width="40" height="7" rx="3.5" fill="#E85D4A"/>
+        <rect x="0" y="120" width="7" height="40" rx="3.5" fill="#E85D4A"/>
+        <rect x="26" y="38" width="11" height="84" rx="3" fill="#F0F0F0"/>
+        <polygon points="26,38 37,38 87,122 76,122" fill="#F0F0F0"/>
+        <rect x="76" y="38" width="11" height="84" rx="3" fill="#F0F0F0"/>
+        <circle cx="100" cy="80" r="4" fill="#E85D4A"/>
+        <rect x="107" y="38" width="11" height="84" rx="3" fill="#F0F0F0"/>
+        <polygon points="107,38 118,38 145,122 134,122" fill="#F0F0F0"/>
+        <rect x="134" y="38" width="11" height="84" rx="3" fill="#F0F0F0"/>
+      </svg>
+    </a>
+  );
+
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
@@ -54,9 +73,7 @@ export default function Navbar({ dark, setDark }) {
       transition: "all 0.3s",
     }}>
 
-      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.4rem", fontWeight: 900, color: logoColor, letterSpacing: "-0.02em" }}>
-        Nogaye<span style={{ color: "#E85D4A" }}>.</span>
-      </div>
+      <Logo />
 
       <ul className="nav-desktop" style={{ display: "flex", gap: "2.5rem", listStyle: "none", margin: 0, padding: 0 }}>
         {links.map(({ href, label }) => (
@@ -69,7 +86,6 @@ export default function Navbar({ dark, setDark }) {
         ))}
       </ul>
 
-      {/* Toggle avec icônes SVG */}
       <button
         onClick={() => setDark(!dark)}
         style={{
